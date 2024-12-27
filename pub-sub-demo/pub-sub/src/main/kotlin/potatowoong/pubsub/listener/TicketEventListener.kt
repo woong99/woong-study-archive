@@ -1,10 +1,11 @@
-package potatowoong.pubsub.service
+package potatowoong.pubsub.listener
 
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.springframework.context.PayloadApplicationEvent
 import org.springframework.context.event.EventListener
 import org.springframework.scheduling.annotation.Async
 import org.springframework.stereotype.Component
+import potatowoong.pubsub.service.TicketService
 
 @Component
 class TicketEventListener(

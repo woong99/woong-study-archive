@@ -1,6 +1,7 @@
 package potatowoong.pubsub.service
 
 import io.github.oshai.kotlinlogging.KotlinLogging
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.http.HttpMethod
 import org.springframework.retry.annotation.Retryable
@@ -14,7 +15,9 @@ import potatowoong.pubsub.repository.TicketRepository
 @Service
 class TicketService(
     private val ticketRepository: TicketRepository,
-    private val restTemplate: RestTemplate
+    private val restTemplate: RestTemplate,
+    @Value("\${server.port}")
+    private val port: String
 ) {
 
     private val log = KotlinLogging.logger { }
@@ -24,7 +27,8 @@ class TicketService(
     fun successTicket(ticketId: Long) {
         try {
             // Ticket 후처리 API 호출
-            val result = restTemplate.exchange<String>("http://localhost:8082/api/ticket", HttpMethod.GET)
+            val result =
+                restTemplate.exchange<String>("http://localhost:8082/api/ticket/$ticketId/$port", HttpMethod.GET)
             log.info { "result: ${result.body}" }
             if (result.body == "FAIL") {
                 throw TicketApiException(ticketId)

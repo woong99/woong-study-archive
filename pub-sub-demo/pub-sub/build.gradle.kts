@@ -46,6 +46,9 @@ dependencies {
     // Spring Retry
     implementation("org.springframework.retry:spring-retry")
 
+    // Redis
+    implementation("org.springframework.boot:spring-boot-starter-data-redis")
+
     // Kotlin-Logging
     implementation("io.github.oshai:kotlin-logging-jvm:${Versions.KOTLIN_LOGGING_VERSION}")
     runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
