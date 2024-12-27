@@ -1,0 +1,9 @@
+spring:
+    application:
+        name: multi-external-api
+
+#server:
+#    tomcat:
+#        threads:
+#            max: 1
+#            min-spare: 1
