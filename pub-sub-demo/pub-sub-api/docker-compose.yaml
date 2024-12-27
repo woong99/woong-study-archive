@@ -1,0 +1,5 @@
+services:
+    external-api:
+        image: pub-sub-api:latest
+        ports:
+            - "8082:8080"
